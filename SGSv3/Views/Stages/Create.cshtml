@@ -1,0 +1,127 @@
+﻿@model SGSv3.Models.Stage
+
+@{
+    ViewBag.Title = "Ajouter un stage";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+      
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.noStagiaire, "Stagiaire", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("noStagiaire", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.noStagiaire, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.noSuperviseur, "Superviseur", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("noSuperviseur", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.noSuperviseur, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.noTuteur, "Tuteur", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("noTuteur", null, htmlAttributes: new { @class = "form-control" })
+                <span class="btn btn-success btn-sm" data-toggle="modal" data-target="#TuteurModal" title="Ajouter un tuteur">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                </span>
+                @Html.ValidationMessageFor(model => model.noTuteur, "", new { @class = "text-danger" })
+
+                <!-- Modal -->
+                <div id="TuteurModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                      
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            </div>
+                            <div class="modal-body">
+                                @Html.Action("_AjoutTuteur", "Stages")
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.noENT, "Entreprise", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("noENT", null, htmlAttributes: new { @class = "form-control" })
+                <span class="btn btn-success btn-sm" data-toggle="modal" data-target="#EntrepriseModal" title="Ajouter une entreprise">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                </span>
+                @Html.ValidationMessageFor(model => model.noENT, "", new { @class = "text-danger" })
+
+            <!-- Modal -->
+            <div id="EntrepriseModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">             
+                        </div>
+                        <div class="modal-body">
+                            @Html.Action("_AjoutEntreprise", "Stages")
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.dateDebut, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.dateDebut, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.dateDebut, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.nbSemaine, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.nbSemaine, new { htmlAttributes = new { @class = "form-control", @min = 1 } })
+                @Html.ValidationMessageFor(model => model.nbSemaine, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.description, 6, 90, null)
+                @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Ajouter" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Retour", "Index")
+</div>
+
+

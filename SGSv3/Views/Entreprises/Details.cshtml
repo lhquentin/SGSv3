@@ -1,0 +1,72 @@
+﻿@model SGSv3.Models.Entreprise
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details de l'entreprise</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nomENT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nomENT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.adresseENT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.adresseENT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.villeENT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.villeENT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cpENT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cpENT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.telENT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telENT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.faxENT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.faxENT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.courrielENT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.courrielENT)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Modifier", "Edit", new { id = Model.noENT }) |
+    @Html.ActionLink("Retour", "Index")
+</p>

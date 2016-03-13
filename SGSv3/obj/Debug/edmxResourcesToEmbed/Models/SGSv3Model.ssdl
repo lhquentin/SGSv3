@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="H2016_ProjetWeb_101_Equipe1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Apprentissage">
+    <Key>
+      <PropertyRef Name="noAPPR" />
+    </Key>
+    <Property Name="noAPPR" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="noSTAGE" Type="int" Nullable="false" />
+    <Property Name="noSemaine" Type="int" Nullable="false" />
+    <Property Name="date" Type="date" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Detail_Semaine">
+    <Key>
+      <PropertyRef Name="noSTAGE" />
+      <PropertyRef Name="noSemaine" />
+    </Key>
+    <Property Name="noSTAGE" Type="int" Nullable="false" />
+    <Property Name="noSemaine" Type="int" Nullable="false" />
+    <Property Name="synthese" Type="varchar" MaxLength="500" />
+    <Property Name="horaire" Type="varchar" MaxLength="500" />
+    <Property Name="envMateriel" Type="varchar" MaxLength="500" />
+    <Property Name="envLogiciel" Type="varchar" MaxLength="500" />
+    <Property Name="commSuperviseur" Type="varchar(max)" />
+    <Property Name="commTuteur" Type="varchar(max)" />
+    <Property Name="soumisCahier" Type="bit" Nullable="false" />
+    <Property Name="soumisSuperviseur" Type="bit" Nullable="false" />
+    <Property Name="soumisTuteur" Type="bit" Nullable="false" />
+    <Property Name="dateDebut" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Difficulte">
+    <Key>
+      <PropertyRef Name="noDIFFIC" />
+    </Key>
+    <Property Name="noDIFFIC" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="noSTAGE" Type="int" Nullable="false" />
+    <Property Name="noSemaine" Type="int" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="500" />
+    <Property Name="moyen" Type="varchar" MaxLength="500" />
+    <Property Name="resultat" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="Entreprise">
+    <Key>
+      <PropertyRef Name="noENT" />
+    </Key>
+    <Property Name="noENT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nomENT" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="adresseENT" Type="varchar" MaxLength="100" />
+    <Property Name="villeENT" Type="varchar" MaxLength="100" />
+    <Property Name="cpENT" Type="varchar" MaxLength="7" />
+    <Property Name="telENT" Type="varchar" MaxLength="50" />
+    <Property Name="faxENT" Type="varchar" MaxLength="50" />
+    <Property Name="courrielENT" Type="varchar" MaxLength="100" />
+    <Property Name="dateSuppression" Type="smalldatetime" />
+  </EntityType>
+  <EntityType Name="Stage">
+    <Key>
+      <PropertyRef Name="noSTAGE" />
+    </Key>
+    <Property Name="noSTAGE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="noStagiaire" Type="int" Nullable="false" />
+    <Property Name="noSuperviseur" Type="int" Nullable="false" />
+    <Property Name="noTuteur" Type="int" Nullable="false" />
+    <Property Name="noENT" Type="int" Nullable="false" />
+    <Property Name="dateDebut" Type="date" Nullable="false" />
+    <Property Name="nbSemaine" Type="int" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="500" />
+    <Property Name="dateSuppression" Type="smalldatetime" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Tache">
+    <Key>
+      <PropertyRef Name="noTACHE" />
+    </Key>
+    <Property Name="noTACHE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="noSTAGE" Type="int" Nullable="false" />
+    <Property Name="noSemaine" Type="int" Nullable="false" />
+    <Property Name="date" Type="date" Nullable="false" />
+    <Property Name="duree" Type="int" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="Type_Utilisateur">
+    <Key>
+      <PropertyRef Name="noTYPE" />
+    </Key>
+    <Property Name="noTYPE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="libelleTYPE" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Utilisateur">
+    <Key>
+      <PropertyRef Name="noUTIL" />
+    </Key>
+    <Property Name="noUTIL" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nomUTIL" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="prenomUTIL" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="courrielUTIL" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="telUTIL" Type="varchar" MaxLength="50" />
+    <Property Name="noTYPE" Type="int" Nullable="false" />
+    <Property Name="mdp" Type="char" MaxLength="70" />
+    <Property Name="dateSuppression" Type="smalldatetime" />
+  </EntityType>
+  <Association Name="FK_Apprentissage_Detail_Semaine">
+    <End Role="Detail_Semaine" Type="Self.Detail_Semaine" Multiplicity="1" />
+    <End Role="Apprentissage" Type="Self.Apprentissage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Detail_Semaine">
+        <PropertyRef Name="noSTAGE" />
+        <PropertyRef Name="noSemaine" />
+      </Principal>
+      <Dependent Role="Apprentissage">
+        <PropertyRef Name="noSTAGE" />
+        <PropertyRef Name="noSemaine" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Detail_Semaine_Stage">
+    <End Role="Stage" Type="Self.Stage" Multiplicity="1" />
+    <End Role="Detail_Semaine" Type="Self.Detail_Semaine" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stage">
+        <PropertyRef Name="noSTAGE" />
+      </Principal>
+      <Dependent Role="Detail_Semaine">
+        <PropertyRef Name="noSTAGE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Difficulte_Detail_Semaine">
+    <End Role="Detail_Semaine" Type="Self.Detail_Semaine" Multiplicity="1" />
+    <End Role="Difficulte" Type="Self.Difficulte" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Detail_Semaine">
+        <PropertyRef Name="noSTAGE" />
+        <PropertyRef Name="noSemaine" />
+      </Principal>
+      <Dependent Role="Difficulte">
+        <PropertyRef Name="noSTAGE" />
+        <PropertyRef Name="noSemaine" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stage_Entreprise">
+    <End Role="Entreprise" Type="Self.Entreprise" Multiplicity="1" />
+    <End Role="Stage" Type="Self.Stage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Entreprise">
+        <PropertyRef Name="noENT" />
+      </Principal>
+      <Dependent Role="Stage">
+        <PropertyRef Name="noENT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stage_Utilisateur">
+    <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="1" />
+    <End Role="Stage" Type="Self.Stage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Utilisateur">
+        <PropertyRef Name="noUTIL" />
+      </Principal>
+      <Dependent Role="Stage">
+        <PropertyRef Name="noStagiaire" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stage_Utilisateur1">
+    <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="1" />
+    <End Role="Stage" Type="Self.Stage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Utilisateur">
+        <PropertyRef Name="noUTIL" />
+      </Principal>
+      <Dependent Role="Stage">
+        <PropertyRef Name="noSuperviseur" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stage_Utilisateur2">
+    <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="1" />
+    <End Role="Stage" Type="Self.Stage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Utilisateur">
+        <PropertyRef Name="noUTIL" />
+      </Principal>
+      <Dependent Role="Stage">
+        <PropertyRef Name="noTuteur" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tache_Detail_Semaine">
+    <End Role="Detail_Semaine" Type="Self.Detail_Semaine" Multiplicity="1" />
+    <End Role="Tache" Type="Self.Tache" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Detail_Semaine">
+        <PropertyRef Name="noSTAGE" />
+        <PropertyRef Name="noSemaine" />
+      </Principal>
+      <Dependent Role="Tache">
+        <PropertyRef Name="noSTAGE" />
+        <PropertyRef Name="noSemaine" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Utilisateur_Type_Utilisateur">
+    <End Role="Type_Utilisateur" Type="Self.Type_Utilisateur" Multiplicity="1" />
+    <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Type_Utilisateur">
+        <PropertyRef Name="noTYPE" />
+      </Principal>
+      <Dependent Role="Utilisateur">
+        <PropertyRef Name="noTYPE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="H2016_ProjetWeb_101_Equipe1ModelStoreContainer">
+    <EntitySet Name="Apprentissage" EntityType="Self.Apprentissage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Detail_Semaine" EntityType="Self.Detail_Semaine" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Difficulte" EntityType="Self.Difficulte" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Entreprise" EntityType="Self.Entreprise" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Stage" EntityType="Self.Stage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tache" EntityType="Self.Tache" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Type_Utilisateur" EntityType="Self.Type_Utilisateur" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Utilisateur" EntityType="Self.Utilisateur" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Apprentissage_Detail_Semaine" Association="Self.FK_Apprentissage_Detail_Semaine">
+      <End Role="Detail_Semaine" EntitySet="Detail_Semaine" />
+      <End Role="Apprentissage" EntitySet="Apprentissage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Detail_Semaine_Stage" Association="Self.FK_Detail_Semaine_Stage">
+      <End Role="Stage" EntitySet="Stage" />
+      <End Role="Detail_Semaine" EntitySet="Detail_Semaine" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Difficulte_Detail_Semaine" Association="Self.FK_Difficulte_Detail_Semaine">
+      <End Role="Detail_Semaine" EntitySet="Detail_Semaine" />
+      <End Role="Difficulte" EntitySet="Difficulte" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stage_Entreprise" Association="Self.FK_Stage_Entreprise">
+      <End Role="Entreprise" EntitySet="Entreprise" />
+      <End Role="Stage" EntitySet="Stage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stage_Utilisateur" Association="Self.FK_Stage_Utilisateur">
+      <End Role="Utilisateur" EntitySet="Utilisateur" />
+      <End Role="Stage" EntitySet="Stage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stage_Utilisateur1" Association="Self.FK_Stage_Utilisateur1">
+      <End Role="Utilisateur" EntitySet="Utilisateur" />
+      <End Role="Stage" EntitySet="Stage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stage_Utilisateur2" Association="Self.FK_Stage_Utilisateur2">
+      <End Role="Utilisateur" EntitySet="Utilisateur" />
+      <End Role="Stage" EntitySet="Stage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tache_Detail_Semaine" Association="Self.FK_Tache_Detail_Semaine">
+      <End Role="Detail_Semaine" EntitySet="Detail_Semaine" />
+      <End Role="Tache" EntitySet="Tache" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Utilisateur_Type_Utilisateur" Association="Self.FK_Utilisateur_Type_Utilisateur">
+      <End Role="Type_Utilisateur" EntitySet="Type_Utilisateur" />
+      <End Role="Utilisateur" EntitySet="Utilisateur" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,131 @@
+﻿@model SGSv3.Models.Detail_Semaine
+
+@{
+    ViewBag.Title = "Détail de la semaine";
+}
+<ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#cahier">Cahier de l'étudiant</a></li>
+    @if (!Context.User.IsInRole("Tuteur"))
+    {<li><a data-toggle="tab" href="#superviseur">Commentaire du superviseur</a></li>}
+    <li><a data-toggle="tab" href="#entreprise">Commentaire du tuteur</a></li>
+</ul>
+
+    <h2>@ViewBag.Title @Request.QueryString.Get("idSemaine") - @Model.Stage.Utilisateur.nomPrenom - (@Model.dateDebut.ToShortDateString() au @Model.dateDebut.Add(TimeSpan.FromDays(6)).ToShortDateString())</h2>
+    @Html.ActionLink("Retour à la liste des semaines du stage", "Index", "Detail_Semaine", new { noEtudiant = Model.Stage.Utilisateur.noUTIL, noStage = Model.noSTAGE }, null)
+    <br />
+    @if (!Context.User.IsInRole("Etudiant"))
+    {@Html.ActionLink("Retour à la liste des stages", "Index", "Stages")}
+
+    <div class="tab-content">
+        <div id="cahier" class="tab-pane fade in active">
+            <h3>Cahier de l'étudiant</h3>
+            <hr />
+            <h4>Champs généraux</h4>
+            <dl class="tbdtsem dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.synthese)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.synthese)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.horaire)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.horaire)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.envMateriel)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.envMateriel)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.envLogiciel)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.envLogiciel)
+                </dd>
+            </dl>
+
+            @if (!Model.soumisCahier && Context.User.IsInRole("Etudiant"))
+            {
+                @Html.ActionLink("Modifier les champs généraux", "Edit", new { idStage = Model.noSTAGE, idSemaine = Model.noSemaine }, new { data_toggle = "modal", data_target = "#modifierCahier" })
+            }
+            
+            <!-- Modal -->
+            <div id="modifierCahier" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Modifier les champs généraux</h4>
+                        </div>
+                        <div class="modal-body">
+                            @Html.Action("Edit", "Detail_Semaine", new { idStage = Model.noSTAGE, idSemaine = Model.noSemaine })
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr />
+            <h4>Tâches</h4>
+            @Html.Action("IndexPartial", "Taches", new { noStage = Request.QueryString.Get("idStage"), noSem = Request.QueryString.Get("idSemaine") })
+            <hr />
+            <h4>Difficultés rencontrées</h4>
+            @Html.Action("IndexPartial", "Difficultes", new { noStage = Request.QueryString.Get("idStage"), noSem = Request.QueryString.Get("idSemaine") })
+            <hr />
+            <h4>Apprentissages</h4>
+            @Html.Action("IndexPartial", "Apprentissages", new { noStage = Request.QueryString.Get("idStage"), noSem = Request.QueryString.Get("idSemaine") })
+            <br />
+
+            @using (Html.BeginForm("DetailsEtudiant", "Detail_Semaine"))
+            {
+                @Html.AntiForgeryToken()
+                @Html.Hidden("noSTAGE", Request.QueryString.Get("idStage"))
+                @Html.Hidden("noSemaine", Request.QueryString.Get("idSemaine"))
+                <div class="form-group">
+                    @if (Model.soumisCahier)
+                    {
+                        if (Context.User.IsInRole("Coordonnateur") || Context.User.IsInRole("Enseignant"))
+                        {
+                            <input type="submit" name="submit" value="Désoumettre" class="btn btn-default" />
+                        }
+                    }
+                    else
+                    {
+                        if (Context.User.IsInRole("Etudiant"))
+                        {
+                            <input type="submit" name="submit" value="Soumettre" class="btn btn-default" />
+                            <p>
+                                Soumettre: Enregistre le cahier et le rend visible pour tout le monde, il n'est plus modifiable par la suite.
+                            </p>
+                        }
+                    }
+
+                </div>
+            }
+        </div>
+
+        @if (!Context.User.IsInRole("Tuteur"))
+        {<div id="superviseur" class="tab-pane fade">
+            <hr />
+            @Html.Partial("CommSuperviseurPartial")
+        </div>}
+        <div id="entreprise" class="tab-pane fade">
+            <hr />
+            @Html.Partial("CommTuteurPartial")
+        </div>
+    </div>

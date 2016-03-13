@@ -1,0 +1,57 @@
+﻿@model SGSv3.Models.Utilisateur
+
+@{
+    ViewBag.Title = "Détails";
+}
+
+<h2>Détails de l'utilisateur</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nomUTIL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nomUTIL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.prenomUTIL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prenomUTIL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.courrielUTIL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.courrielUTIL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.telUTIL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telUTIL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Type_Utilisateur.libelleTYPE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type_Utilisateur.libelleTYPE)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Modifier", "Edit", new { id = Model.noUTIL }) |
+    @Html.ActionLink("Retour à la liste", "Index")
+</p>

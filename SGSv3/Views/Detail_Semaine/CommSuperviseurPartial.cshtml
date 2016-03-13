@@ -1,0 +1,53 @@
+﻿@model SGSv3.Models.Detail_Semaine
+
+@{
+    ViewBag.Title = "Commentaire du Superviseur";
+}
+@using (Html.BeginForm("DetailsSuperviseur", "Detail_Semaine"))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.noSTAGE)
+    @Html.HiddenFor(model => model.noSemaine)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.commSuperviseur, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @if(Model.soumisSuperviseur)
+            {
+                @Html.TextAreaFor(model => model.commSuperviseur, 6, 90, new { htmlAttributes = new { @class = "form-control", @rows = 5 }, @readonly = "readonly" })
+            }
+            else if (Context.User.IsInRole("Coordonnateur") || Context.User.IsInRole("Enseignant"))
+            {
+                @Html.TextAreaFor(model => model.commSuperviseur, 6, 90, new { htmlAttributes = new { @class = "form-control", @rows = 5 } })
+            }
+            else
+            {
+                @Html.TextArea("vide", new { htmlAttributes = new { @class = "form-control", @rows = 5 }, @readonly = "readonly" })
+            }
+            
+            @Html.ValidationMessageFor(model => model.commSuperviseur, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            @if (Model.soumisSuperviseur && Context.User.IsInRole("Coordonnateur") || Context.User.IsInRole("Enseignant"))
+            {
+                <input type="submit" name="submit" value="Désoumettre" class="btn btn-default" />
+            }
+            else if (Context.User.IsInRole("Coordonnateur") || Context.User.IsInRole("Enseignant"))
+            {
+                <input type="submit" name="submit" value="Modifier" class="btn btn-default" />
+                <input type="submit" name="submit" value="Soumettre" class="btn btn-default" />
+                <p>
+                    Modifier: enregistre le commentaire sans le rendre visible pour l'étudiant
+                    <br />Soumettre: enregistre le commentaire et le rend visible pour l'étudiant, il n'est plus modifiable par la suite
+                </p>
+            }
+            
+        </div>
+    </div>
+
+}

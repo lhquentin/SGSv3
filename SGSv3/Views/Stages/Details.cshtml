@@ -1,0 +1,74 @@
+﻿@model SGSv3.Models.Stage
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details du stage</h2>
+
+<div>
+  
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.dateDebut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateDebut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nbSemaine)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nbSemaine)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+        <dt>
+            Entreprise
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Entreprise.nomENT)
+        </dd>
+
+        <dt>
+            Stagiaire
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Utilisateur.nomPrenom)
+        </dd>
+
+        <dt>
+            Superviseur
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Utilisateur1.nomPrenom)
+        </dd>
+
+        <dt>
+            Tuteur
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Utilisateur2.nomPrenom)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Modifier", "Edit", new { id = Model.noSTAGE }) |
+    @Html.ActionLink("Retour", "Index")
+</p>

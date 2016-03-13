@@ -1,0 +1,55 @@
+﻿@model IEnumerable<SGSv3.Models.Detail_Semaine>
+
+<table class="table table-bordered table-hover">
+    <tr>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.noSemaine)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.dateDebut)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.soumisCahier)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.soumisSuperviseur)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.soumisTuteur)
+        </th>
+        <th class="text-center"></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.noSemaine)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.dateDebut)
+            </td>
+            <td class="text-center">
+                @Html.CheckBox("Cahier", item.soumisCahier, new { @disabled = "disabled" })
+            </td>
+            <td class="text-center">
+                @Html.CheckBox("Superviseur", item.soumisSuperviseur, new { @disabled = "disabled" })
+            </td>
+            <td class="text-center">
+                @Html.CheckBox("Tuteur", item.soumisTuteur, new { @disabled = "disabled" })
+            </td>
+            <td class="text-center">
+                <a href="@Url.Action("Details", new { idStage = item.noSTAGE, idSemaine = item.noSemaine })" class="btn btn-info" title="Détails">
+                    <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                </a>
+            </td>
+            @if (item == Model.Last())
+            {
+                ViewBag.Title = "Stage de " + Html.DisplayFor(modelItem => item.Stage.Utilisateur.nomPrenom);
+            }
+        </tr>
+    }
+    <h2>@ViewBag.Title</h2>
+
+    @Html.ActionLink("Retour à la liste des stages", "Index", "Stages")
+</table>

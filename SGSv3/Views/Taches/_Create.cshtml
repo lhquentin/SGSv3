@@ -1,0 +1,39 @@
+﻿@model SGSv3.Models.Tache
+
+@using (Html.BeginForm("Index", "Taches")) 
+{
+    @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.Hidden("noSTAGE", Request.QueryString.Get("idStage"))
+        @Html.Hidden("noSemaine", Request.QueryString.Get("idSemaine"))
+
+    <table class="table">
+        <tr>
+            <th>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.date, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.date, "", new { @class = "text-danger" })
+                </div>
+            </th>
+            <th>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.duree, new { htmlAttributes = new { @class = "form-control", @min = 1 } })
+                    @Html.ValidationMessageFor(model => model.duree, "", new { @class = "text-danger" })
+                </div>
+            </th>
+            <th>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+                </div>
+            </th>
+            <th>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Ajouter" class="btn btn-default" />
+                    </div>
+                </div>
+            </th>
+        </tr>
+        </table>
+}

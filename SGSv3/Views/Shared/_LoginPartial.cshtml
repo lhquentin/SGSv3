@@ -1,0 +1,24 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("Deconnexion", "Acces", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+    @Html.AntiForgeryToken()
+    <li class="dropdown">
+        <a data-toggle="dropdown" style="padding-bottom : 40px" class="dropdown-toggle" href="#">@Session["nomUTIL"] <span class="caret"> </span></a>
+        <ul class="dropdown-menu">
+            <li>
+                @*Html.ActionLink("Bonjour " + User.Identity.GetUserName() + "!", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Administrer" })*@
+                @Html.ActionLink("Modifier mon mot de passe", "ModifierMDP", "Acces", routeValues: null, htmlAttributes: new { title = "Manage" })
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Se déconnecter</a></li>
+        </ul>
+    </li>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Se connecter", "Connexion", "Acces", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}

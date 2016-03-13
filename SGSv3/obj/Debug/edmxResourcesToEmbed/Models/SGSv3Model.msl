@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="H2016_ProjetWeb_101_Equipe1ModelStoreContainer" CdmEntityContainer="H2016_ProjetWeb_101_Equipe1Entities">
+    <EntitySetMapping Name="Apprentissages">
+      <EntityTypeMapping TypeName="H2016_ProjetWeb_101_Equipe1Model.Apprentissage">
+        <MappingFragment StoreEntitySet="Apprentissage">
+          <ScalarProperty Name="noAPPR" ColumnName="noAPPR" />
+          <ScalarProperty Name="noSTAGE" ColumnName="noSTAGE" />
+          <ScalarProperty Name="noSemaine" ColumnName="noSemaine" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Detail_Semaine">
+      <EntityTypeMapping TypeName="H2016_ProjetWeb_101_Equipe1Model.Detail_Semaine">
+        <MappingFragment StoreEntitySet="Detail_Semaine">
+          <ScalarProperty Name="dateDebut" ColumnName="dateDebut" />
+          <ScalarProperty Name="noSTAGE" ColumnName="noSTAGE" />
+          <ScalarProperty Name="noSemaine" ColumnName="noSemaine" />
+          <ScalarProperty Name="synthese" ColumnName="synthese" />
+          <ScalarProperty Name="horaire" ColumnName="horaire" />
+          <ScalarProperty Name="envMateriel" ColumnName="envMateriel" />
+          <ScalarProperty Name="envLogiciel" ColumnName="envLogiciel" />
+          <ScalarProperty Name="commSuperviseur" ColumnName="commSuperviseur" />
+          <ScalarProperty Name="commTuteur" ColumnName="commTuteur" />
+          <ScalarProperty Name="soumisCahier" ColumnName="soumisCahier" />
+          <ScalarProperty Name="soumisSuperviseur" ColumnName="soumisSuperviseur" />
+          <ScalarProperty Name="soumisTuteur" ColumnName="soumisTuteur" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Difficultes">
+      <EntityTypeMapping TypeName="H2016_ProjetWeb_101_Equipe1Model.Difficulte">
+        <MappingFragment StoreEntitySet="Difficulte">
+          <ScalarProperty Name="noDIFFIC" ColumnName="noDIFFIC" />
+          <ScalarProperty Name="noSTAGE" ColumnName="noSTAGE" />
+          <ScalarProperty Name="noSemaine" ColumnName="noSemaine" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="moyen" ColumnName="moyen" />
+          <ScalarProperty Name="resultat" ColumnName="resultat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Entreprises">
+      <EntityTypeMapping TypeName="H2016_ProjetWeb_101_Equipe1Model.Entreprise">
+        <MappingFragment StoreEntitySet="Entreprise">
+          <ScalarProperty Name="noENT" ColumnName="noENT" />
+          <ScalarProperty Name="nomENT" ColumnName="nomENT" />
+          <ScalarProperty Name="adresseENT" ColumnName="adresseENT" />
+          <ScalarProperty Name="villeENT" ColumnName="villeENT" />
+          <ScalarProperty Name="cpENT" ColumnName="cpENT" />
+          <ScalarProperty Name="telENT" ColumnName="telENT" />
+          <ScalarProperty Name="faxENT" ColumnName="faxENT" />
+          <ScalarProperty Name="courrielENT" ColumnName="courrielENT" />
+          <ScalarProperty Name="dateSuppression" ColumnName="dateSuppression" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Stages">
+      <EntityTypeMapping TypeName="H2016_ProjetWeb_101_Equipe1Model.Stage">
+        <MappingFragment StoreEntitySet="Stage">
+          <ScalarProperty Name="noSTAGE" ColumnName="noSTAGE" />
+          <ScalarProperty Name="noStagiaire" ColumnName="noStagiaire" />
+          <ScalarProperty Name="noSuperviseur" ColumnName="noSuperviseur" />
+          <ScalarProperty Name="noTuteur" ColumnName="noTuteur" />
+          <ScalarProperty Name="noENT" ColumnName="noENT" />
+          <ScalarProperty Name="dateDebut" ColumnName="dateDebut" />
+          <ScalarProperty Name="nbSemaine" ColumnName="nbSemaine" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="dateSuppression" ColumnName="dateSuppression" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="H2016_ProjetWeb_101_Equipe1Model.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Taches">
+      <EntityTypeMapping TypeName="H2016_ProjetWeb_101_Equipe1Model.Tache">
+        <MappingFragment StoreEntitySet="Tache">
+          <ScalarProperty Name="noTACHE" ColumnName="noTACHE" />
+          <ScalarProperty Name="noSTAGE" ColumnName="noSTAGE" />
+          <ScalarProperty Name="noSemaine" ColumnName="noSemaine" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="duree" ColumnName="duree" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Type_Utilisateur">
+      <EntityTypeMapping TypeName="H2016_ProjetWeb_101_Equipe1Model.Type_Utilisateur">
+        <MappingFragment StoreEntitySet="Type_Utilisateur">
+          <ScalarProperty Name="noTYPE" ColumnName="noTYPE" />
+          <ScalarProperty Name="libelleTYPE" ColumnName="libelleTYPE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Utilisateurs">
+      <EntityTypeMapping TypeName="H2016_ProjetWeb_101_Equipe1Model.Utilisateur">
+        <MappingFragment StoreEntitySet="Utilisateur">
+          <ScalarProperty Name="noUTIL" ColumnName="noUTIL" />
+          <ScalarProperty Name="nomUTIL" ColumnName="nomUTIL" />
+          <ScalarProperty Name="prenomUTIL" ColumnName="prenomUTIL" />
+          <ScalarProperty Name="courrielUTIL" ColumnName="courrielUTIL" />
+          <ScalarProperty Name="telUTIL" ColumnName="telUTIL" />
+          <ScalarProperty Name="noTYPE" ColumnName="noTYPE" />
+          <ScalarProperty Name="mdp" ColumnName="mdp" />
+          <ScalarProperty Name="dateSuppression" ColumnName="dateSuppression" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

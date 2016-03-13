@@ -1,0 +1,147 @@
+﻿@model IEnumerable<SGSv3.Models.Stage>
+
+@{
+    ViewBag.Title = "Mes stages";
+}
+<ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#mes_stages">Mes Stages</a></li>
+    @if (!Context.User.IsInRole("Tuteur"))
+    {<li><a data-toggle="tab" href="#tous_stages">Tous les stages</a></li>}
+</ul>
+
+<div class="tab-content">
+    <div id="mes_stages" class="tab-pane fade in active">
+        <h3>Mes stages</h3>
+        @if(User.IsInRole("Coordonnateur"))
+        {
+            <p>
+                @Html.ActionLink("Ajouter", "Create")
+            </p>
+        }
+        <table class="table table-bordered table-hover">
+            <tr>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.dateDebut)
+                </th>
+                <th class="text-center">
+                    Entreprise
+                </th>
+                <th class="text-center">
+                    Stagiaire
+                </th>
+                <th class="text-center">
+                    Superviseur
+                </th>
+                <th class="text-center">
+                    Tuteur
+                </th>
+                <th class="text-center"></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                if (User.Identity.Name == item.noSuperviseur.ToString() || User.Identity.Name == item.noTuteur.ToString())
+                {
+                    
+                <tr>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.dateDebut)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.Entreprise.nomENT)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.Utilisateur.nomPrenom)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.Utilisateur1.nomPrenom)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.Utilisateur2.nomPrenom)
+                    </td>
+                    <td class="text-center">
+                        <a href="@Url.Action("Details", new { id = item.noSTAGE })" class="btn btn-info" title="Détail">
+                            <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                        </a>
+                        <a href="@Url.Action("Edit", new { id = item.noSTAGE })" class="btn btn-warning" title="Modifier">
+                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                        </a>
+                        @if (User.IsInRole("Coordonnateur"))
+                        {<a href="@Url.Action("Delete", new { id = item.noSTAGE })" class="btn btn-danger" title="Supprimer">
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                        </a>                        }
+                        <a href="@Url.Action("Index", "Detail_Semaine", new { noEtudiant = item.Utilisateur.noUTIL, noStage = item.noSTAGE })" class="btn btn-success" title="Liste des semaines">
+                            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                        </a>
+                    </td>
+                </tr>
+                }
+            }
+
+        </table>
+    </div>
+    @if (!Context.User.IsInRole("Tuteur"))
+    {<div id="tous_stages" class="tab-pane fade">
+        <h3>Tous les stages</h3>
+         <table class="table table-bordered table-hover">
+             <tr>
+                 <th class="text-center">
+                     @Html.DisplayNameFor(model => model.dateDebut)
+                 </th>
+                 <th class="text-center">
+                     Entreprise
+                 </th>
+                 <th class="text-center">
+                     Stagiaire
+                 </th>
+                 <th class="text-center">
+                     Superviseur
+                 </th>
+                 <th class="text-center">
+                     Tuteur
+                 </th>
+                 <th class="text-center"></th>
+             </tr>
+             @foreach (var item in Model)
+             {
+                 <tr>
+                     <td class="text-center">
+                         @Html.DisplayFor(modelItem => item.dateDebut)
+                     </td>
+                     <td class="text-center">
+                         @Html.DisplayFor(modelItem => item.Entreprise.nomENT)
+                     </td>
+                     <td class="text-center">
+                         @Html.DisplayFor(modelItem => item.Utilisateur.nomPrenom)
+                     </td>
+                     <td class="text-center">
+                         @Html.DisplayFor(modelItem => item.Utilisateur1.nomPrenom)
+                     </td>
+                     <td class="text-center">
+                         @Html.DisplayFor(modelItem => item.Utilisateur2.nomPrenom)
+                     </td>
+                     <td class="text-center">
+                         <a href="@Url.Action("Details", new { id = item.noSTAGE })" class="btn btn-info" title="Détail">
+                             <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                         </a>
+                         @if (User.Identity.Name == item.Utilisateur1.noTYPE.ToString() || User.IsInRole("Coordonnateur"))
+                         {<a href="@Url.Action("Edit", new { id = item.noSTAGE })" class="btn btn-warning" title="Modifier">
+                             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                         </a>
+                             if (User.IsInRole("Coordonnateur"))
+                             {<a href="@Url.Action("Delete", new { id = item.noSTAGE })" class="btn btn-danger" title="Supprimer">
+                                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                             </a>}
+                         }
+                         <a href="@Url.Action("Index", "Detail_Semaine", new { noEtudiant = item.Utilisateur.noUTIL, noStage = item.noSTAGE })" class="btn btn-success" title="Liste des semaines">
+                             <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                         </a>
+                     </td>
+                 </tr>
+             }
+         </table>
+    </div>
+    }
+</div>
+
+

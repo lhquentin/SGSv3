@@ -1,0 +1,62 @@
+﻿@model IEnumerable<SGSv3.Models.Entreprise>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Gestion des Entreprises</h2>
+
+@if(User.IsInRole("Coordonnateur"))
+{
+    <p>
+        @Html.ActionLink("Ajouter une entreprise", "Create")
+    </p>
+}
+
+<table class="table table-bordered table-hover">
+    <tr>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.nomENT)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.villeENT)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.telENT)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.courrielENT)
+        </th>
+        <th class="text-center"></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.nomENT)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.villeENT)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.telENT)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.courrielENT)
+            </td>
+            <td class="text-center">
+                <a href="@Url.Action("Details", new { id = item.noENT })" class="btn btn-info" title="Détail">
+                    <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                </a>
+                <a href="@Url.Action("Edit", new { id = item.noENT })" class="btn btn-warning" title="Modifier">
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                </a>
+                <a href="@Url.Action("Delete", new { id = item.noENT })" class="btn btn-danger" title="Supprimer">
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                </a>
+            </td>
+        </tr>
+    }
+
+</table>

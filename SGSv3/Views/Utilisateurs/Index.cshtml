@@ -1,0 +1,64 @@
+﻿@model IEnumerable<SGSv3.Models.Utilisateur>
+
+@{
+    ViewBag.Title = "Liste des utilisateurs";
+}
+
+<h2>Liste des utilisateurs</h2>
+
+<p>
+    @Html.ActionLink("Ajouter utilisateur", "Create")
+</p>
+<table class="table table-bordered table-hover">
+    <tr>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.nomUTIL)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.prenomUTIL)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.courrielUTIL)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.telUTIL)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Type_Utilisateur.libelleTYPE)
+        </th>
+        <th class="text-center"></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.nomUTIL)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.prenomUTIL)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.courrielUTIL)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.telUTIL)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Type_Utilisateur.libelleTYPE)
+            </td>
+            <td class="text-center">
+                <a href="@Url.Action("Details", new { id = item.noUTIL })" class="btn btn-info" title="Détails">
+                    <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                </a>
+                <a href="@Url.Action("Edit", new { id = item.noUTIL })" class="btn btn-warning" title="Modifier">
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                </a>
+                <a href="@Url.Action("Delete", new { id = item.noUTIL })" class="btn btn-danger" title="Supprimer">
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                </a>
+            </td>
+        </tr>
+    }
+
+</table>

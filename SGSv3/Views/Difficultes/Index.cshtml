@@ -1,0 +1,100 @@
+﻿@model IEnumerable<SGSv3.Models.Difficulte>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<table class="table table-bordered table-hover">
+    <tr>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.moyen)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.resultat)
+        </th>
+
+        @if (Context.User.IsInRole("Etudiant"))
+        {<th class="text-center"></th>}
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.moyen)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.resultat)
+            </td>
+
+            @if (Context.User.IsInRole("Etudiant"))
+            {
+                <td class="text-center">
+                    <a data-toggle="modal" href="@Url.Action("Edit", new { id = item.noDIFFIC })" data-target="#modifierDifficulte" class="btn btn-warning" title="Modifier">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                    </a>
+
+                    <!-- Modal -->
+                    <div id="modifierDifficulte" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Modifier la difficulté</h4>
+                                </div>
+                                <div class="modal-body">
+                                    @Html.Action("Edit", "Difficultes", new { id = item.noDIFFIC })
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <a data-toggle="modal" href="@Url.Action("Delete", new { id = item.noDIFFIC })" data-target="#supprimerDifficulte" class="btn btn-danger" title="Supprimer">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                    </a>
+
+                    <!-- Modal -->
+                    <div id="supprimerDifficulte" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Supprimer la difficulté</h4>
+                                </div>
+                                <div class="modal-body">
+                                    @Html.Action("Delete", "Difficultes", new { id = item.noDIFFIC })
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </td>
+            }
+        </tr>
+    }
+
+    @if (Context.User.IsInRole("Etudiant"))
+    {
+        <tr>
+            @{Html.RenderAction("_Create", "Difficultes");}
+        </tr>
+    }
+
+</table>

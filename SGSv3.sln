@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGSv3", "SGSv3\SGSv3.csproj", "{E44C42C9-D0D5-4CC1-9C25-58129A6BFF97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGSv3.Tests", "..\..\Users\1536944\Documents\Visual Studio 2013\Projects\SGSv3\SGSv3.Tests\SGSv3.Tests.csproj", "{9DB6E341-4BC4-4DD1-9779-9F7C340BB120}"
+EndProject
+Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E44C42C9-D0D5-4CC1-9C25-58129A6BFF97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E44C42C9-D0D5-4CC1-9C25-58129A6BFF97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E44C42C9-D0D5-4CC1-9C25-58129A6BFF97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E44C42C9-D0D5-4CC1-9C25-58129A6BFF97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DB6E341-4BC4-4DD1-9779-9F7C340BB120}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DB6E341-4BC4-4DD1-9779-9F7C340BB120}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DB6E341-4BC4-4DD1-9779-9F7C340BB120}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DB6E341-4BC4-4DD1-9779-9F7C340BB120}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
